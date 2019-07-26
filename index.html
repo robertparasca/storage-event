@@ -9,12 +9,12 @@
 		const iframe = document.getElementById("frame").contentWindow;
 		window.addEventListener("storage", function storageHandler(event) {
 			const { key, oldValue, newValue } = event;
-			const object = {
+			const eventObject = {
 				key,
 				oldValue,
 				newValue
 			};
-			iframe.postMessage(object, "*");
+			iframe.postMessage({type: "localStorage changed", event: eventObject}, "*");
 		});
 	</script>
 </body>
