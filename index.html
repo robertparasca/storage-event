@@ -8,10 +8,13 @@
 	<script>
 		const iframe = document.getElementById("frame").contentWindow;
 		window.addEventListener("storage", function storageHandler(event) {
-			console.log("storage changed - OUTER");
-			console.log(event);
-			const ev = JSON.parse(JSON.stringify(event))
-			iframe.postMessage(ev, "*");
+			const { key, oldValue, newValue } = event;
+			const object = {
+				key,
+				oldValue,
+				newValue
+			};
+			iframe.postMessage(object, "*");
 		});
 	</script>
 </body>
