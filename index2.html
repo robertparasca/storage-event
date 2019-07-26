@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+	<h1>Iframe</h1>
+	<button id="btn">Trigger change in localStorage</button>
+	<script>
+		window.localStorage.clear();
+
+		const btn = document.getElementById("btn");
+		let counter = 0;
+
+		btn.addEventListener("click", function btnHandler() {
+			window.localStorage.setItem("test", ++counter);
+		});
+
+		window.addEventListener("message", function messageHandler(event) {
+			console.log(event);
+			// if (event.data && event.data.type === "")
+		});
+
+		window.addEventListener("storage", function storageHandler() {
+			console.log("storage changed");
+		});
+	</script>
+</body>
+</html>

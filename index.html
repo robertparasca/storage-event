@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+	<iframe id="frame" src="./index2.html"></iframe>
+	<script>
+		const iframe = document.getElementById("frame").contentWindow;
+		window.addEventListener("storage", function storageHandler(event) {
+			console.log("storage changed - OUTER");
+			console.log(event);
+			const ev = JSON.parse(JSON.stringify(event))
+			iframe.postMessage(ev, "*");
+		});
+	</script>
+</body>
+</html>
